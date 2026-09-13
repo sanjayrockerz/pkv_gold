@@ -1,0 +1,6 @@
+import { contact, whatsappUrl } from '@/lib/constants';
+
+export function Location() {
+  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(contact.address)}&output=embed`;
+  return <section className="location-scene scene scene-deep" id="sanctuary-location"><div className="location-copy"><span className="scene-index">11 / THE PHYSICAL STORE</span><h2>COME TO<br /><em>KOLATHUR.</em></h2><p>A place in Kolathur for a precise, private conversation about your gold.</p><div className="location-details"><span>PKV GOLD</span><strong>Kolathur, Chennai</strong><small>{contact.address}</small></div><div className="contact-actions"><a className="button button-gold" href={contact.mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <span>→</span></a><a className="button button-outline" href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp PKV Gold <span>→</span></a></div></div><div className="location-map location-map-real"><iframe title="PKV Gold location in Kolathur, Chennai" src={mapSrc} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen /><div className="map-location-tag"><span>PKV GOLD</span><small>{contact.address}</small></div></div></section>;
+}

@@ -1,0 +1,14 @@
+'use client';
+
+import { FormEvent, useEffect, useState } from 'react';
+import Link from 'next/link';
+
+type Rate = { rate: number; effectiveAt: string; updatedAt: string };
+export default function AdminPage() {
+  const [loggedIn, setLoggedIn] = useState(false); const [username, setUsername] = useState(''); const [password, setPassword] = useState(''); const [rate, setRate] = useState(''); const [current, setCurrent] = useState<Rate | null>(null); const [message, setMessage] = useState('');
+  async function login(event: FormEvent) { event.preventDefault(); setMessage(''); const response = await fetch('/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) }); if (!response.ok) return setMessage('Invalid credentials or admin access is not configured.'); setLoggedIn(true); loadRate(); }
+  async function loadRate() { const response = await fetch('/api/admin/rate'); if (response.ok) { const data = await response.json() as Rate; setCurrent(data); setRate(String(data.rate)); } }
+  async function save(event: FormEvent) { event.preventDefault(); const response = await fetch('/api/admin/rate', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ rate }) }); setMessage(response.ok ? 'Rate updated. The public calculator is live with this value.' : 'Could not update the rate.'); if (response.ok) loadRate(); }
+  useEffect(() => { if (loggedIn) loadRate(); }, [loggedIn]);
+  return <main className="admin-page"><Link className="admin-brand" href="/">PKV GOLD <span>RATE CONTROL</span></Link>{!loggedIn ? <form className="admin-card" onSubmit={login}><p className="kicker">PRIVATE ACCESS</p><h1>Daily gold rate.</h1><p>Update the current 24K rate used by the public valuation calculator.</p><label>Username<input value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" required /></label><label>Password<input value={password} onChange={(e) => setPassword(e.target.value)} type="password" autoComplete="current-password" required /></label><button className="btn btn-gold">LOG IN <b>→</b></button>{message && <small className="admin-message">{message}</small>}</form> : <form className="admin-card" onSubmit={save}><p className="kicker">ADMIN / CURRENT RATE</p><h1>Gold rate control.</h1><p>Only the active 24K rate is managed here. Purity factors are calculated transparently on the public page.</p><label>Today&apos;s rate per gram<input value={rate} onChange={(e) => setRate(e.target.value)} type="number" min="1" step="0.01" required /></label><button className="btn btn-gold">SAVE RATE <b>→</b></button>{current && <div className="admin-meta"><span>Current public rate <b>₹{current.rate.toLocaleString('en-IN')}</b></span><span>Last updated <b>{new Date(current.updatedAt).toLocaleString('en-IN')}</b></span></div>}{message && <small className="admin-message">{message}</small>}</form>}</main>;
+}
