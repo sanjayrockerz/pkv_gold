@@ -1,0 +1,35 @@
+.media {
+  isolation: isolate;
+}
+
+.media img {
+  object-position: 50% 50%;
+  animation: drift 18s ease-in-out .5s infinite alternate;
+}
+
+.media::before {
+  position: absolute;
+  z-index: 1;
+  inset: -15%;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(108deg, transparent 38%, rgba(255, 242, 190, .2) 49%, transparent 59%);
+  transform: translateX(-72%);
+  animation: sheen 12s 2s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0% { object-position: 48% 48%; }
+  50% { object-position: 53% 50%; }
+  100% { object-position: 50% 53%; }
+}
+
+@keyframes sheen {
+  0%, 35% { opacity: 0; transform: translateX(-72%); }
+  48% { opacity: 1; }
+  68%, 100% { opacity: 0; transform: translateX(72%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media img, .media::before { animation: none; }
+}

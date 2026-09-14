@@ -33,6 +33,43 @@ export function HeroValueTransition({ children }: PropsWithChildren) {
         return;
       }
 
+      let cleanupVideo: (() => void) | undefined;
+      const poster = media.querySelector<HTMLImageElement>('img');
+      if (poster) {
+        const video = document.createElement('video');
+        video.className = 'hero-video';
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+        video.poster = poster.currentSrc || poster.src;
+        video.setAttribute('aria-hidden', 'true');
+        video.src = '/Gold_jewellery_commercial_camera…_1080p_20260914111903.mp4';
+        media.appendChild(video);
+
+        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const playIfVisible = () => { void video.play().catch(() => undefined); };
+        const observer = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) playIfVisible();
+          else video.pause();
+        }, { rootMargin: '-18% 0px -18% 0px', threshold: 0.05 });
+        const showVideo = () => { video.classList.add('is-ready'); poster.classList.add('is-video-ready'); };
+        const onVideoError = () => { video.remove(); };
+        video.addEventListener('canplay', showVideo, { once: true });
+        video.addEventListener('error', onVideoError, { once: true });
+        observer.observe(media);
+        if (motionQuery.matches) video.pause();
+
+        cleanupVideo = () => {
+          observer.disconnect();
+          video.removeEventListener('canplay', showVideo);
+          video.removeEventListener('error', onVideoError);
+          video.pause();
+          video.remove();
+        };
+      }
+
       const heroIntro = [copy.querySelector('.kicker'), title, lede, actions, note, media].filter(Boolean);
       gsap.set(heroIntro, { y: 24, opacity: 0 });
       gsap.to(heroIntro, {
@@ -131,6 +168,7 @@ export function HeroValueTransition({ children }: PropsWithChildren) {
       requestAnimationFrame(refresh);
 
       return () => {
+        cleanupVideo?.();
         media.removeEventListener('pointermove', onPointerMove);
         media.removeEventListener('pointerleave', resetPointer);
         resizeObserver.disconnect();

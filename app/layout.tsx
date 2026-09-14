@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { contact } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'PKV Gold — Know Your Gold. Know Your Value.',
-  description: 'Private gold valuation with precision, clarity, and dignity in Kolathur, Chennai.',
+  description: `Private gold valuation with precision, clarity, and dignity in ${contact.locationLabel}.`,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
