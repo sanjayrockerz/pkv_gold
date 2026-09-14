@@ -1,5 +1,5 @@
 import { contact } from '@/lib/constants';
-import { buildGeneralWhatsAppMessage, buildWhatsAppUrl } from '@/lib/whatsapp';
+import { buildGeneralWhatsAppUrl } from '@/lib/whatsapp';
 import styles from './FloatingContactActions.module.css';
 
 function PhoneIcon() {
@@ -13,7 +13,7 @@ function WhatsAppIcon() {
 export function FloatingContactActions() {
   const actions = [
     { href: `tel:${contact.phone}`, label: 'Call', className: 'call', icon: <PhoneIcon /> },
-    { href: buildWhatsAppUrl(buildGeneralWhatsAppMessage()), label: 'WhatsApp', className: 'whatsapp', icon: <WhatsAppIcon />, external: true },
+    { href: buildGeneralWhatsAppUrl(), label: 'WhatsApp', className: 'whatsapp', icon: <WhatsAppIcon />, external: true },
   ];
 
   return <aside className={styles.actions} aria-label="Contact PKV Gold">

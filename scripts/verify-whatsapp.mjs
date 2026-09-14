@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { buildAppointmentWhatsAppUrl, buildGeneralWhatsAppMessage, buildWhatsAppUrl, WHATSAPP_NUMBER } from '../lib/whatsapp.ts';
+import { buildAppointmentWhatsAppUrl, buildGeneralWhatsAppMessage, buildGeneralWhatsAppUrl, buildWhatsAppUrl, WHATSAPP_NUMBER } from '../lib/whatsapp.ts';
 
 const requiredGeneralEmojis = ['✨', '👋', '💰', '📍', '🙏'];
 const requiredAppointmentEmojis = ['✨', '💰', '👤', '📍', '📅', '📝', '🙏'];
@@ -13,7 +13,7 @@ const verifyUrl = (url, expectedMessage) => {
 };
 
 const generalMessage = buildGeneralWhatsAppMessage();
-const generalUrl = buildWhatsAppUrl(generalMessage);
+const generalUrl = buildGeneralWhatsAppUrl();
 verifyUrl(generalUrl, generalMessage);
 for (const emoji of requiredGeneralEmojis) assert.equal(generalMessage.includes(emoji), true);
 
