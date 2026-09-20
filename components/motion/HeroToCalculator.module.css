@@ -1,8 +1,0 @@
-.root { --transition-progress: 0; --calculator-emerge: 0; --hero-mask: inset(0% 0% 0% 0%); --hero-dim: 0; position: relative; isolation: isolate; overflow: visible; background: #0d0c09; }
-.atmosphere { position: absolute; z-index: -1; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 58% 52%, rgba(196,160,82,.16), transparent 28%), radial-gradient(ellipse at 52% 70%, rgba(226,199,122,.08), transparent 54%); opacity: calc(.2 + var(--transition-progress) * .7); }
-.root :global(.question) { position: relative; background: transparent; }
-.root :global(.question)::before { position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, rgba(226,199,122,.45), transparent); content: ''; opacity: calc(.25 + var(--transition-progress) * .75); }
-.root :global(.calculator) { position: relative; z-index: 1; background: transparent; }
-.root :global([data-hero-scene]) [class*="background__"] { clip-path: var(--hero-mask); }
-.root :global([data-hero-scene]) [class*="background__"]::after { position:absolute; inset:0; background:#090704; opacity:var(--hero-dim); content:''; pointer-events:none; z-index:3; }
-@media (prefers-reduced-motion: reduce) { .atmosphere { opacity: .45; } }

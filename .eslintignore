@@ -2,3 +2,5 @@ next-env.d.ts
 .next/
 .next-dev/
 node_modules/
+chrome-qa-profile*/
+screen-qa*.png

@@ -3,8 +3,14 @@ import './globals.css';
 import { contact } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'PKV Gold — Know Your Gold. Know Your Value.',
-  description: `Private gold valuation with precision, clarity, and dignity in ${contact.locationLabel}.`,
+  title: 'PKV GOLD | Cash for Gold in Kolathur, Chennai',
+  description: `Clear gold valuation and cash-for-gold service from PKV GOLD in ${contact.locationLabel}.`,
+  openGraph: {
+    title: 'PKV GOLD | Cash for Gold in Kolathur, Chennai',
+    description: `Clear gold valuation and cash-for-gold service from PKV GOLD in ${contact.locationLabel}.`,
+    type: 'website',
+    locale: 'en_IN',
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
