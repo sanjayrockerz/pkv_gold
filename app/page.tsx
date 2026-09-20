@@ -209,7 +209,7 @@ function Header() {
   ];
   const navigation = [
     ["HOME", "#top"],
-    ["ABOUT", "#reviews"],
+    ["ABOUT US", "#reviews"],
     ["SERVICES", "#value"],
     ["FAQ", "#faq"],
     ["CONTACT", "#contact"],
@@ -219,6 +219,11 @@ function Header() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setMenuOpen(false); };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
   }, []);
   return (
     <>
@@ -274,16 +279,14 @@ function Header() {
           <i /><i /><i />
         </button>
       </div>
-      {menuOpen && (
-        <nav id="mobile-navigation" className="mobile-glass-menu" aria-label="Mobile navigation">
+      <nav id="mobile-navigation" className={`mobile-glass-menu${menuOpen ? " is-open" : ""}`} aria-label="Mobile navigation" aria-hidden={!menuOpen}>
           {navigation.map(([label, href]) => (
             <a key={label} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
           ))}
           <a className="mobile-glass-menu-action" href={buildGeneralWhatsAppUrl()} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>
             <HeaderIcon type="whatsapp" /> WhatsApp Us <span aria-hidden="true">→</span>
           </a>
-        </nav>
-      )}
+      </nav>
     </header>
     </>
   );

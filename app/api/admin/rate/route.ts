@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   if (!isAdminCookie(request.cookies.get('pkv_admin')?.value)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   return NextResponse.json(await readGoldRate(), { headers: { 'Cache-Control': 'no-store' } });
 }
-export async function PUT(request: NextRequest) {
+async function updateRates(request: NextRequest) {
   if (!isAdminCookie(request.cookies.get('pkv_admin')?.value)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await request.json().catch(() => ({}));
   try {
@@ -19,3 +19,5 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json(await writeGoldRate(rates));
   } catch { return NextResponse.json({ error: 'Enter a valid rate for every karat.' }, { status: 400 }); }
 }
+export const POST = updateRates;
+export const PUT = updateRates;

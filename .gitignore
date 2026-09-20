@@ -1,5 +1,8 @@
 .vercel
 node_modules/
+.env
+.env.*
+!.env.example
 .next/
 .next-dev/
 .next-stale-*/
