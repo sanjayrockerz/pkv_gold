@@ -235,13 +235,23 @@ html,body{background:var(--ivory)}
 @media(prefers-reduced-motion:reduce){.masthead .navbar,.glass-nav-links a,.glass-nav-links a::after{transition:none}}
 
 /* Coordinate the fixed glass nav and hero as one vertical composition. */
-:root{--marquee-height:2.65rem;--nav-top:3.3rem;--nav-height:4.75rem;--hero-content-gap:1.65rem}
+:root{--marquee-height:2.65rem;--nav-top:3.3rem;--nav-height:4.75rem;--hero-content-gap:2rem}
 .masthead .announcement{height:var(--marquee-height)}
 .masthead .navbar{top:var(--nav-top);min-height:var(--nav-height)}
-.site main .hero,.heroScene,.heroInner{min-height:clamp(700px,calc(100svh - 8rem),820px)}
-.heroInner{padding-top:calc(var(--nav-top) + var(--nav-height) - var(--marquee-height) + var(--hero-content-gap));padding-bottom:2.75rem;align-items:stretch}
-.heroScene{background:radial-gradient(circle at 76% 34%,rgba(22,74,55,.42),transparent 30%),radial-gradient(circle at 58% 38%,rgba(225,181,80,.2),transparent 31%),linear-gradient(135deg,#fffdf8 0%,#f8f5ed 48%,#e7d2a4 76%,#dfe5d9 100%)}
-.heroScene .content{justify-content:flex-start;padding-top:0;padding-bottom:0}
-.heroScene .ownerImage{height:92%!important;width:82%!important;inset:auto 8% 0 auto!important}
-@media(max-width:900px){:root{--marquee-height:2.35rem;--nav-top:2.85rem;--nav-height:4.15rem;--hero-content-gap:1.35rem}.site main .hero,.heroScene,.heroInner{min-height:0}.heroInner{padding-top:calc(var(--nav-top) + var(--nav-height) - var(--marquee-height) + var(--hero-content-gap));padding-bottom:2.5rem}.heroScene .content{padding-top:0}.heroScene .ownerImage{height:92%!important;inset:auto 0 0 auto!important}}
-@media(max-width:560px){.heroInner{padding-top:var(--hero-content-gap);padding-bottom:1.5rem}.heroScene .ownerImage{width:82%!important;height:92%!important}}
+.site main .hero,.hero-scene,.hero-content-scene{min-height:clamp(700px,calc(100svh - 8rem),820px)}
+.hero-content-scene{padding-top:calc(var(--nav-top) + var(--nav-height) - var(--marquee-height) + var(--hero-content-gap));padding-bottom:2.75rem;align-items:stretch}
+.hero-scene{background:radial-gradient(circle at 76% 34%,rgba(22,74,55,.42),transparent 30%),radial-gradient(circle at 58% 38%,rgba(225,181,80,.2),transparent 31%),linear-gradient(135deg,#fffdf8 0%,#f8f5ed 48%,#e7d2a4 76%,#dfe5d9 100%)}
+.hero-scene .content{justify-content:flex-start;padding-top:0;padding-bottom:0}
+.hero-scene .ownerImage{height:92%!important;width:82%!important;inset:auto 8% 0 auto!important}
+@media(max-width:900px){:root{--marquee-height:2.35rem;--nav-top:2.85rem;--nav-height:4.15rem;--hero-content-gap:1.35rem}.site main .hero,.hero-scene,.hero-content-scene{min-height:0}.hero-content-scene{padding-top:calc(var(--nav-top) + var(--nav-height) - var(--marquee-height) + var(--hero-content-gap));padding-bottom:2.5rem}.hero-scene .content{padding-top:0}.hero-scene .ownerImage{height:92%!important;inset:auto 0 0 auto!important}}
+@media(max-width:560px){.hero-content-scene{padding-bottom:1.5rem}.hero-scene .ownerImage{width:82%!important;height:92%!important}}
+
+/* CSS-module specificity guard: this is the single navbar-to-hero offset. */
+.hero-content-scene[class*="heroInner"]{padding-top:calc(var(--nav-top) + var(--nav-height) - var(--marquee-height) + var(--hero-content-gap));padding-bottom:2.75rem}
+@media(max-width:900px){.hero-content-scene[class*="heroInner"]{padding-top:calc(var(--nav-top) + var(--nav-height) - var(--marquee-height) + var(--hero-content-gap));padding-bottom:2.5rem}}
+@media(max-width:560px){.hero-content-scene[class*="heroInner"]{padding-bottom:1.5rem}}
+
+/* Refresh intro: the same circular logo travels into the navbar mark. */
+.brand-intro{position:fixed;z-index:100;inset:0;display:grid;place-items:center;background:var(--paper);pointer-events:auto;will-change:opacity}
+.brand-intro img{display:block;width:8rem;height:8rem;border-radius:50%;object-fit:contain;transform-origin:center;will-change:transform}
+@media(prefers-reduced-motion:reduce){.brand-intro{display:none}}

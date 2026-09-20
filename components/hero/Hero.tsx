@@ -28,7 +28,7 @@ const OWNER_HERO_ASSET = '/images/owner hero.png';
 
 export function Hero() {
   return <section className={`${styles.hero} hero pkv-hero`} aria-labelledby="hero-title">
-    <div className={styles.heroScene}>
+    <div className={`${styles.heroScene} hero-scene`}>
       <div className={`${styles.heroInner} hero-content-scene`}>
       <div className={`${styles.content} hero-copy pkv-hero-copy`}>
       <p className={styles.eyebrow}>CASH FOR GOLD</p>

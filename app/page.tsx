@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 import { contact, purityOptions, buildMapEmbedUrl } from "@/lib/constants";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import { calculateGoldValue, formatIndianRupees } from "@/lib/calculator";
@@ -145,6 +146,56 @@ function HeaderIcon({ type }: { type: "phone" | "mail" | "whatsapp" }) {
     </svg>
   );
 }
+function BrandIntro() {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
+
+  useLayoutEffect(() => {
+    const overlay = overlayRef.current;
+    const logo = logoRef.current;
+    const target = document.querySelector<HTMLElement>(".masthead .brand-logo");
+    if (!overlay || !logo || !target) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(overlay, { autoAlpha: 0, pointerEvents: "none" });
+      return;
+    }
+
+    const targetRect = target.getBoundingClientRect();
+    const startSize = 128;
+    const startX = window.innerWidth / 2;
+    const startY = window.innerHeight / 2;
+    const targetX = targetRect.left + targetRect.width / 2;
+    const targetY = targetRect.top + targetRect.height / 2;
+    const ctx = gsap.context(() => {
+      gsap.set(logo, { x: 0, y: 0, scale: 1, rotation: 0 });
+      gsap.timeline({ defaults: { ease: "power3.inOut" } })
+        .to(logo, {
+          x: targetX - startX,
+          y: targetY - startY,
+          scale: targetRect.width / startSize,
+          duration: 1.05,
+          delay: 0.12,
+        })
+        .to(overlay, { autoAlpha: 0, duration: 0.28, pointerEvents: "none" }, "-=0.18");
+    }, overlay);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={overlayRef} className="brand-intro" aria-hidden="true">
+      <Image
+        ref={logoRef}
+        src="/images/PKV%20LOGO.png"
+        alt=""
+        width={128}
+        height={128}
+        priority
+      />
+    </div>
+  );
+}
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -171,6 +222,7 @@ function Header() {
   }, []);
   return (
     <>
+    <BrandIntro />
     <header className="masthead">
       <div className="announcement" aria-label="PKV Gold announcements">
         <div className="announcement-track">
