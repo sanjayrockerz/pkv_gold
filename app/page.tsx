@@ -82,6 +82,75 @@ const proofImages = [
   "pkv-gold-payment-proof-3.jpg",
   "pkv-gold-payment-proof-4.jpg",
 ];
+
+function FinalCtaVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(0.65);
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      void video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    const nextMuted = !video.muted;
+    video.muted = nextMuted;
+    if (!nextMuted) video.volume = volume;
+    setIsMuted(nextMuted);
+  };
+
+  const updateVolume = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const nextVolume = Number(event.target.value);
+    const video = videoRef.current;
+    if (!video) return;
+    video.volume = nextVolume;
+    video.muted = nextVolume === 0;
+    setVolume(nextVolume);
+    setIsMuted(nextVolume === 0);
+  };
+
+  return (
+    <div className="final-cta-video">
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        aria-label="PKV Gold video"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      >
+        <source src="/PKV%20GOLD%20.mp4" type="video/mp4" />
+      </video>
+      <div className="final-cta-video-controls" aria-label="Video controls">
+        <button type="button" onClick={togglePlay} aria-label={isPlaying ? "Pause video" : "Play video"}>
+          {isPlaying ? "Ⅱ" : "▶"}
+        </button>
+        <button type="button" onClick={toggleMute} aria-label={isMuted ? "Turn sound on" : "Mute video"}>
+          {isMuted ? "🔇" : "🔊"}
+        </button>
+        <label>
+          <span className="sr-only">Video volume</span>
+          <input type="range" min="0" max="1" step="0.05" value={isMuted ? 0 : volume} onChange={updateVolume} aria-label="Video volume" />
+        </label>
+      </div>
+    </div>
+  );
+}
+
 function Arrow() {
   return <span aria-hidden="true">→</span>;
 }
@@ -634,13 +703,54 @@ function CustomerTrustChapter() {
 }
 
 function PaymentProofCarousel() {
+  const [index, setIndex] = useState(0);
+  const move = (next: number) =>
+    setIndex((next + proofImages.length) % proofImages.length);
+
   return (
-    <div className="proof-grid" role="region" aria-label="Recent customer payment proofs">
-      {proofImages.map((image, proofIndex) => (
-        <figure className="proof-slide" key={image}>
-          <Image src={`/images/proofs/${image}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 50vw, 20vw" />
-        </figure>
-      ))}
+    <div
+      className="proof-carousel"
+      role="region"
+      aria-label="Recent customer payment proofs"
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") move(index - 1);
+        if (event.key === "ArrowRight" || event.key === "Enter") move(index + 1);
+      }}
+      tabIndex={0}
+    >
+      <button className="proof-arrow" type="button" onClick={() => move(index - 1)} aria-label="Previous payment proof">
+        ‹
+      </button>
+      <div className="proof-viewport">
+        <div className="proof-track" style={{ transform: `translateX(-${index * 100}%)` }}>
+          {proofImages.map((image, proofIndex) => (
+            <button
+              className="proof-slide"
+              key={image}
+              type="button"
+              onClick={() => move(index + 1)}
+              aria-label={`Show next payment proof. Currently showing ${proofIndex + 1} of ${proofImages.length}`}
+            >
+              <Image src={`/images/proofs/${image}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" />
+            </button>
+          ))}
+        </div>
+      </div>
+      <button className="proof-arrow" type="button" onClick={() => move(index + 1)} aria-label="Next payment proof">
+        ›
+      </button>
+      <div className="proof-dots" aria-label="Payment proof pages">
+        {proofImages.map((image, proofIndex) => (
+          <button
+            key={image}
+            type="button"
+            className={proofIndex === index ? "active" : ""}
+            onClick={() => setIndex(proofIndex)}
+            aria-label={`Show payment proof ${proofIndex + 1}`}
+            aria-current={proofIndex === index ? "true" : undefined}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -985,12 +1095,7 @@ export default function Home() {
             </Button>
           </div>
           <div className="final-cta-visual-frame">
-            <Image
-              src="/images/owner%20hero.png"
-              alt="PKV Gold owner"
-              fill
-              sizes="(max-width: 767px) 100vw, 52vw"
-            />
+            <FinalCtaVideo />
           </div>
         </section>
       </main>

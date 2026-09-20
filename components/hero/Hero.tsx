@@ -22,8 +22,6 @@ const valuePoints = [
   ['coins', 'CLEAR &', 'TRANSPARENT VALUE', 'Honest process'],
 ] as const;
 
-// The requested pkv-owner-hero.png is not currently present in public/images.
-// Use the available supplied owner portrait until that exact asset is added.
 const OWNER_HERO_ASSET = '/images/owner hero.png';
 
 export function Hero() {
