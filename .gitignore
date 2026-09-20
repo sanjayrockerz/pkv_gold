@@ -4,3 +4,7 @@ node_modules/
 .next-dev/
 .next-stale-*/
 *.tsbuildinfo
+chrome-qa*/
+chrome-wait*/
+qa-*.png
+screen-qa*.png
