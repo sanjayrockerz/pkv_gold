@@ -808,3 +808,45 @@ html,body{background:var(--ivory)}
     min-height: 3.2rem;
   }
 }
+
+/* Preserve the complete portrait valuation video frame. The right editorial
+   column owns the background; the video is contained inside it so faces,
+   branding, and product details are never cropped on wide screens. */
+.final-cta-visual-frame {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 253, 248, .78), transparent 58%),
+    linear-gradient(145deg, var(--sand), var(--ivory));
+}
+
+.final-cta-video {
+  display: grid;
+  place-items: center;
+}
+
+.final-cta-video > video {
+  object-fit: contain;
+  object-position: center center;
+  background: transparent;
+}
+
+@media (max-width: 767px) {
+  .final-cta-visual-frame {
+    height: auto;
+    aspect-ratio: 9 / 16;
+    background: var(--sand);
+  }
+
+  .final-cta-video {
+    height: auto;
+    aspect-ratio: 9 / 16;
+  }
+
+  .final-cta-video > video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    object-fit: contain;
+  }
+}
