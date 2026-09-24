@@ -701,6 +701,7 @@ html,body{background:var(--ivory)}
   }
   .final-cta-visual .final-cta-copy {
     max-width: none;
+    order: 1;
     padding: 4.5rem 1.15rem 3.5rem;
   }
   .final-cta-visual h2 {
@@ -719,6 +720,7 @@ html,body{background:var(--ivory)}
   .final-cta-visual-frame {
     width: 100%;
     height: auto;
+    order: 2;
     aspect-ratio: 9 / 16;
   }
   .final-cta-video,
