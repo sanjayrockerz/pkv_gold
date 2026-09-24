@@ -71,11 +71,11 @@ const reviewData = [
   ],
 ] as const;
 const galleryImages = [
-  "WhatsApp Image 2026-09-18 at 9.17.46 AM.webp",
-  "WhatsApp Image 2026-09-18 at 9.17.47 AM.webp",
-  "WhatsApp Image 2026-09-18 at 9.17.48 AM.webp",
-  "WhatsApp Image 2026-09-19 at 4.50.23 PM.webp",
-  "WhatsApp Image 2026-09-19 at 4.50.23 PM (1).webp",
+  "customer-01.webp",
+  "customer-02.webp",
+  "customer-03.webp",
+  "customer-04.webp",
+  "customer-05.webp",
 ];
 const proofImages = [
   "ChatGPT Image Sep 24, 2026, 05_26_50 PM.png",
