@@ -823,6 +823,8 @@ html,body{background:var(--ivory)}
 .final-cta-video {
   display: grid;
   place-items: center;
+  min-width: 0;
+  min-height: 0;
 }
 
 .final-cta-video > video {
