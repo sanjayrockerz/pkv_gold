@@ -1145,7 +1145,7 @@ export default function Home() {
           </a>
           <span>{contact.address}</span>
         </div>
-        <small>@cenexasystems 2026</small>
+        <small>Powered by Cenexa Systems © 2026</small>
       </footer>
       <Floating />
     </div>

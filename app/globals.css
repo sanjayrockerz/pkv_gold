@@ -282,6 +282,11 @@ html,body{background:var(--ivory)}
   .masthead .glass-nav-links{justify-content:center;margin:0}
   .masthead .header-contacts{flex:0 0 auto}
 }
+
+.footer > small {
+  text-align: center;
+  font-weight: 600;
+}
 .mobile-glass-menu{display:none;visibility:hidden;opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .2s ease,transform .2s ease,visibility .2s ease}
 .mobile-glass-menu.is-open{display:block;visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
 @media (min-width:768px) and (max-width:1023px){
