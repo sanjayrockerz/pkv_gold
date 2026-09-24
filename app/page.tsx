@@ -71,16 +71,17 @@ const reviewData = [
   ],
 ] as const;
 const galleryImages = [
-  "ChatGPT Image Sep 20, 2026, 10_26_42 AM.png",
-  "ChatGPT Image Sep 20, 2026, 10_53_59 AM.png",
-  "ChatGPT Image Sep 20, 2026, 10_54_08 AM.png",
-  "ChatGPT Image Sep 20, 2026, 11_10_49 AM.png",
+  "WhatsApp Image 2026-09-18 at 9.17.46 AM.jpeg",
+  "WhatsApp Image 2026-09-18 at 9.17.47 AM.jpeg",
+  "WhatsApp Image 2026-09-18 at 9.17.48 AM.jpeg",
+  "WhatsApp Image 2026-09-19 at 4.50.23 PM.jpeg",
+  "WhatsApp Image 2026-09-19 at 4.50.23 PM (1).jpeg",
 ];
 const proofImages = [
-  "pkv-gold-payment-proof-1.jpg",
-  "pkv-gold-payment-proof-2.jpg",
-  "pkv-gold-payment-proof-3.jpg",
-  "pkv-gold-payment-proof-4.jpg",
+  "ChatGPT Image Sep 24, 2026, 05_26_50 PM.png",
+  "ChatGPT Image Sep 24, 2026, 05_27_41 PM.png",
+  "ChatGPT Image Sep 24, 2026, 05_27_59 PM.png",
+  "ChatGPT Image Sep 24, 2026, 05_28_07 PM.png",
 ];
 
 function FinalCtaVideo() {
@@ -267,7 +268,9 @@ function BrandIntro() {
 }
 function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const previousScrollY = useRef(0);
   const ticker = [
     "Know the value of your gold",
     "Transparent gold valuation",
@@ -284,7 +287,18 @@ function Header() {
     ["CONTACT", "#contact"],
   ] as const;
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 18);
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 18);
+      if (currentScrollY <= 8) {
+        setNavHidden(false);
+      } else if (currentScrollY > previousScrollY.current + 2) {
+        setNavHidden(true);
+      } else if (currentScrollY < previousScrollY.current - 2) {
+        setNavHidden(false);
+      }
+      previousScrollY.current = currentScrollY;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -308,7 +322,7 @@ function Header() {
           ))}
         </div>
       </div>
-      <div className={`navbar ${scrolled ? "is-scrolled" : ""}`}>
+      <div className={`navbar ${scrolled ? "is-scrolled" : ""}${navHidden ? " is-hidden" : ""}`}>
         <a className="brand-lockup" href="#top" aria-label="PKV Gold home">
           <Image
             className="brand-logo"
@@ -366,13 +380,18 @@ function Nav() {
 function Floating() {
   return (
     <aside className="floating-contact" aria-label="Contact PKV Gold">
-      <a href={`tel:${contact.phone}`}>CALL</a>
+      <a href={`tel:${contact.phone}`} aria-label="Call PKV Gold">
+        <HeaderIcon type="phone" />
+        <span>CALL</span>
+      </a>
       <a
         href={buildGeneralWhatsAppUrl()}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="WhatsApp PKV Gold"
       >
-        WHATSAPP
+        <HeaderIcon type="whatsapp" />
+        <span>WHATSAPP</span>
       </a>
     </aside>
   );
@@ -709,7 +728,7 @@ function PaymentProofCarousel() {
 
   return (
     <div
-      className="proof-carousel"
+      className="proof-carousel proof-gallery"
       role="region"
       aria-label="Recent customer payment proofs"
       onKeyDown={(event) => {
@@ -731,7 +750,7 @@ function PaymentProofCarousel() {
               onClick={() => move(index + 1)}
               aria-label={`Show next payment proof. Currently showing ${proofIndex + 1} of ${proofImages.length}`}
             >
-              <Image src={`/images/proofs/${image}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" />
+              <Image src={`/images/proofs/${encodeURIComponent(image)}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" />
             </button>
           ))}
         </div>
@@ -783,7 +802,7 @@ function PaymentProofCarousel() {
         <div className="proof-track" style={{ transform: `translateX(-${index * 100}%)` }}>
           {proofImages.map((image, proofIndex) => (
             <figure className="proof-slide" key={image}>
-              <Image src={`/images/proofs/${image}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" />
+              <Image src={`/images/proofs/${encodeURIComponent(image)}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" />
             </figure>
           ))}
         </div>
