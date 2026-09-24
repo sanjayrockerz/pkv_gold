@@ -538,12 +538,15 @@ function CustomerGallery() {
           >
             {galleryImages.map((image, i) => (
               <figure className="gallery-slide" key={image}>
-                <Image
+                <img
                   src={`/images/gallery-optimized/${image}`}
-                  alt={`PKV Gold customer gallery image ${i + 1}`}
-                  fill
+                  srcSet={`${`/images/gallery-optimized/${image.replace(".webp", "-800.webp")} 800w`}, ${`/images/gallery-optimized/${image.replace(".webp", "-1600.webp")} 1600w`}, ${`/images/gallery-optimized/${image} 3200w`}`}
                   sizes="(max-width: 560px) 100vw, (max-width: 1100px) 45vw, 30vw"
-                  quality={86}
+                  alt={`PKV Gold customer gallery image ${i + 1}`}
+                  width={3200}
+                  height={1442}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <figcaption>PKV Gold customer moment</figcaption>
               </figure>
