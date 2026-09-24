@@ -1120,6 +1120,16 @@ export default function Home() {
             <Button href="#value" tone="gold">
               Calculate your value
             </Button>
+            <div className="final-cta-contact" aria-label="PKV Gold contact details">
+              <a href={`tel:${contact.phone}`}>
+                <span>CALL US</span>
+                <strong>{contact.displayPhone}</strong>
+              </a>
+              <a href={buildGeneralWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+                <span>WHATSAPP</span>
+                <strong>{contact.displayPhone}</strong>
+              </a>
+            </div>
           </div>
           <div className="final-cta-visual-frame">
             <FinalCtaVideo />

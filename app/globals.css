@@ -589,6 +589,140 @@ html,body{background:var(--ivory)}
 
 /* Payment proofs advance one receipt at a time when the image is clicked. */
 .payments-section .proof-carousel{width:min(100%,50rem);margin:3.1rem auto 0}
+
+/* Final valuation split hero: the portrait video is a full-height editorial
+   column, not a floating card. */
+.final-cta.final-cta-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 54%) minmax(0, 46%);
+  gap: 0;
+  min-height: clamp(680px, 78vh, 900px);
+  padding: 0;
+  background: linear-gradient(115deg, var(--sand) 0%, var(--ivory) 68%);
+  text-align: left;
+  align-items: stretch;
+}
+.final-cta-visual .final-cta-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 48rem;
+  padding: clamp(4rem, 7vh, 7rem) clamp(1.25rem, 5vw, 7rem);
+}
+.final-cta-visual h2 {
+  margin: 1rem 0 1.4rem;
+  color: var(--green);
+  font-size: clamp(3.5rem, 6vw, 6.8rem);
+  line-height: .9;
+}
+.final-cta-visual .final-cta-copy > p:not(.eyebrow) {
+  max-width: 35rem;
+  margin: 0;
+  font-size: clamp(1rem, 1.25vw, 1.16rem);
+  line-height: 1.65;
+}
+.final-cta-visual .final-cta-trust {
+  margin-top: clamp(2rem, 4vh, 3rem);
+}
+.final-cta-visual .button {
+  align-self: flex-start;
+  margin-top: clamp(2rem, 4vh, 3rem);
+}
+.final-cta-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: clamp(1.5rem, 3vh, 2.25rem);
+}
+.final-cta-contact a {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  min-width: 10rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(180,147,74,.55);
+}
+.final-cta-contact span {
+  color: var(--gold);
+  font-size: .63rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+.final-cta-contact strong {
+  color: var(--green);
+  font-size: .9rem;
+  font-weight: 600;
+}
+.final-cta-visual-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+  justify-self: stretch;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: var(--green-deep);
+  box-shadow: none;
+}
+.final-cta-video,
+.final-cta-video > video {
+  width: 100%;
+  height: 100%;
+}
+.final-cta-video > video {
+  display: block;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center center;
+}
+@media (max-width: 1100px) and (min-width: 768px) {
+  .final-cta.final-cta-visual {
+    grid-template-columns: minmax(0, 53%) minmax(0, 47%);
+    min-height: clamp(640px, 76vh, 800px);
+  }
+  .final-cta-visual .final-cta-copy {
+    padding-inline: clamp(2rem, 4vw, 4rem);
+  }
+  .final-cta-visual h2 {
+    font-size: clamp(3rem, 5.2vw, 4.8rem);
+  }
+}
+@media (max-width: 767px) {
+  .final-cta.final-cta-visual {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    background: var(--sand);
+  }
+  .final-cta-visual .final-cta-copy {
+    max-width: none;
+    padding: 4.5rem 1.15rem 3.5rem;
+  }
+  .final-cta-visual h2 {
+    font-size: clamp(2.8rem, 13vw, 4.4rem);
+  }
+  .final-cta-visual .button {
+    width: 100%;
+  }
+  .final-cta-contact {
+    gap: 1rem;
+  }
+  .final-cta-contact a {
+    min-width: 0;
+    flex: 1 1 9rem;
+  }
+  .final-cta-visual-frame {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+  }
+  .final-cta-video,
+  .final-cta-video > video {
+    height: 100%;
+  }
+}
 .payments-section .proof-viewport{width:100%;min-width:0;overflow:hidden}
 .payments-section .proof-track{display:flex;width:100%;transition:transform .45s ease;will-change:transform}
 .payments-section .proof-slide{position:relative;display:block;flex:0 0 100%;width:100%;height:clamp(30rem,68vh,44rem);padding:0;border:1px solid rgba(180,147,74,.38);border-radius:.4rem;background:var(--paper);box-shadow:0 .45rem 1.2rem rgba(34,54,45,.07);cursor:pointer;overflow:hidden}
