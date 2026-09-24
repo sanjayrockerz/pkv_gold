@@ -1145,7 +1145,7 @@ export default function Home() {
           </a>
           <span>{contact.address}</span>
         </div>
-        <small>© 2026 PKV Gold</small>
+        <small>@cenexasystems 2026</small>
       </footer>
       <Floating />
     </div>
