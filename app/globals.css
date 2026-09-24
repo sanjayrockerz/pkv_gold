@@ -158,7 +158,8 @@ html,body{background:var(--ivory)}
 @media(prefers-reduced-motion:reduce){.gallery-track{transition:none}}
 .gallery-track{transform:translateX(var(--gallery-offset))}
 .gallery-carousel{max-width:1500px}
-.gallery-slide{aspect-ratio:1600 / 721}
+.gallery-slide{aspect-ratio:5 / 4}
+.gallery-slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .gallery-slide:nth-last-child(-n+2) img{object-position:35% center}
 .floating-contact a{min-width:52px;min-height:52px;padding:.55rem}
 .floating-contact a svg{width:1.2rem;height:1.2rem;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.7}
