@@ -269,6 +269,7 @@ function BrandIntro() {
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
+  const [heroPassed, setHeroPassed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const previousScrollY = useRef(0);
   const ticker = [
@@ -289,8 +290,11 @@ function Header() {
   useEffect(() => {
     const onScroll = () => {
       const currentScrollY = window.scrollY;
+      const hero = document.querySelector<HTMLElement>('.pkv-hero');
+      const outsideHero = hero ? hero.getBoundingClientRect().bottom <= 0 : false;
       setScrolled(currentScrollY > 18);
-      if (currentScrollY <= 8) {
+      setHeroPassed(outsideHero);
+      if (outsideHero || currentScrollY <= 8) {
         setNavHidden(false);
       } else if (currentScrollY > previousScrollY.current + 2) {
         setNavHidden(true);
@@ -322,7 +326,7 @@ function Header() {
           ))}
         </div>
       </div>
-      <div className={`navbar ${scrolled ? "is-scrolled" : ""}${navHidden ? " is-hidden" : ""}`}>
+        <div className={`navbar ${scrolled ? "is-scrolled" : ""}${navHidden || heroPassed ? " is-hidden" : ""}`}>
         <a className="brand-lockup" href="#top" aria-label="PKV Gold home">
           <Image
             className="brand-logo"
