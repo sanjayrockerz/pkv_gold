@@ -539,7 +539,7 @@ function CustomerGallery() {
             {galleryImages.map((image, i) => (
               <figure className="gallery-slide" key={image}>
                 <Image
-                  src={`/images/gallery-optimized/${encodeURIComponent(image)}`}
+                  src={`/images/gallery-optimized/${image}`}
                   alt={`PKV Gold customer gallery image ${i + 1}`}
                   fill
                   sizes="(max-width: 560px) 100vw, (max-width: 1100px) 45vw, 30vw"
