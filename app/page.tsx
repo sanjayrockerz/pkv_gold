@@ -71,11 +71,11 @@ const reviewData = [
   ],
 ] as const;
 const galleryImages = [
-  "WhatsApp Image 2026-09-18 at 9.17.46 AM.jpeg",
-  "WhatsApp Image 2026-09-18 at 9.17.47 AM.jpeg",
-  "WhatsApp Image 2026-09-18 at 9.17.48 AM.jpeg",
-  "WhatsApp Image 2026-09-19 at 4.50.23 PM.jpeg",
-  "WhatsApp Image 2026-09-19 at 4.50.23 PM (1).jpeg",
+  "WhatsApp Image 2026-09-18 at 9.17.46 AM.webp",
+  "WhatsApp Image 2026-09-18 at 9.17.47 AM.webp",
+  "WhatsApp Image 2026-09-18 at 9.17.48 AM.webp",
+  "WhatsApp Image 2026-09-19 at 4.50.23 PM.webp",
+  "WhatsApp Image 2026-09-19 at 4.50.23 PM (1).webp",
 ];
 const proofImages = [
   "ChatGPT Image Sep 24, 2026, 05_26_50 PM.png",
@@ -539,10 +539,11 @@ function CustomerGallery() {
             {galleryImages.map((image, i) => (
               <figure className="gallery-slide" key={image}>
                 <Image
-                  src={`/images/gallery/${encodeURIComponent(image)}`}
+                  src={`/images/gallery-optimized/${encodeURIComponent(image)}`}
                   alt={`PKV Gold customer gallery image ${i + 1}`}
                   fill
                   sizes="(max-width: 560px) 100vw, (max-width: 1100px) 45vw, 30vw"
+                  quality={86}
                 />
                 <figcaption>PKV Gold customer moment</figcaption>
               </figure>
