@@ -261,6 +261,7 @@ function BrandIntro() {
         alt=""
         width={128}
         height={128}
+        unoptimized
         priority
       />
     </div>
@@ -334,6 +335,7 @@ function Header() {
             alt="PKV Gold"
             width={1254}
             height={1254}
+            unoptimized
             priority
           />
           <span className="brand-copy">
@@ -546,6 +548,7 @@ function CustomerGallery() {
                   alt={`PKV Gold customer gallery image ${i + 1}`}
                   fill
                   sizes="(max-width: 560px) 100vw, (max-width: 1100px) 45vw, 30vw"
+                  unoptimized
                   loading="lazy"
                 />
                 <figcaption>PKV Gold customer moment</figcaption>
@@ -758,7 +761,7 @@ function PaymentProofCarousel() {
               onClick={() => move(index + 1)}
               aria-label={`Show next payment proof. Currently showing ${proofIndex + 1} of ${proofImages.length}`}
             >
-              <Image src={`/images/proofs/${encodeURIComponent(image)}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" />
+              <Image src={`/images/proofs/${encodeURIComponent(image)}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" unoptimized />
             </button>
           ))}
         </div>
@@ -810,7 +813,7 @@ function PaymentProofCarousel() {
         <div className="proof-track" style={{ transform: `translateX(-${index * 100}%)` }}>
           {proofImages.map((image, proofIndex) => (
             <figure className="proof-slide" key={image}>
-              <Image src={`/images/proofs/${encodeURIComponent(image)}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" />
+              <Image src={`/images/proofs/${encodeURIComponent(image)}`} alt={`PKV Gold payment proof ${proofIndex + 1}`} fill sizes="(max-width: 900px) 90vw, 38vw" unoptimized />
             </figure>
           ))}
         </div>
@@ -853,6 +856,7 @@ export default function Home() {
                   alt="PKV Gold assessment and value process"
                   fill
                   sizes="(max-width: 900px) 100vw, 50vw"
+                  unoptimized
                 />
               </div>
             </div>
