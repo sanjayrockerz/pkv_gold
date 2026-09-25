@@ -336,6 +336,9 @@ function Header() {
             height={1254}
             priority
           />
+          <span className="brand-copy">
+            <span className="brand-name">PKV <i>GOLD</i></span>
+          </span>
         </a>
         <nav className="glass-nav-links" aria-label="Primary navigation">
           {navigation.map(([label, href]) => (

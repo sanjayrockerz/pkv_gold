@@ -346,7 +346,7 @@ html,body{background:var(--ivory)}
     margin: 0;
     padding: 7px 9px;
     display: grid;
-    grid-template-columns: 48px minmax(0, 1fr) 42px;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) 42px;
     gap: 10px;
     transform: translateY(0);
     transition: transform .28s ease, opacity .28s ease, background-color .22s ease, box-shadow .22s ease;
@@ -359,7 +359,11 @@ html,body{background:var(--ivory)}
     pointer-events: none;
   }
 
-  .masthead .brand-lockup,
+  .masthead .brand-lockup {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .masthead .brand-logo {
     width: 48px;
     min-width: 48px;
@@ -377,6 +381,21 @@ html,body{background:var(--ivory)}
     gap: clamp(10px, 4vw, 22px);
     min-width: 0;
     margin: 0;
+  }
+
+  .masthead .brand-copy {
+    min-width: 0;
+  }
+
+  .masthead .brand-name {
+    display: block;
+    overflow: hidden;
+    color: var(--green-deep);
+    font-size: clamp(1rem, 4.6vw, 1.35rem);
+    letter-spacing: -.035em;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .masthead .glass-nav-links a {
