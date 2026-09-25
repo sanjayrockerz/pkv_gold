@@ -31,16 +31,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
   },
-  icons: {
-    icon: [
-      { url: '/icon.png', type: 'image/png' },
-      { url: '/favicon.ico', sizes: 'any' },
-    ],
-    shortcut: '/favicon.ico',
-    apple: [
-      { url: '/apple-icon.png', type: 'image/png' },
-    ],
-  },
   openGraph: {
     title: 'PKV GOLD | Cash for Gold in Kolathur, Chennai',
     description: `Get a clear, transparent gold valuation and instant cash for your old gold at PKV GOLD in ${contact.locationLabel}. Trusted local gold buyers in Chennai.`,
