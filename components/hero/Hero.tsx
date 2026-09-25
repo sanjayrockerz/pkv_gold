@@ -51,7 +51,7 @@ export function Hero() {
       <div className={styles.trustBlock}><div><strong>TRUSTED GOLD VALUATION</strong><small>Clear process</small></div><span /><div><strong>LOCAL SERVICE</strong><small>Personal attention</small></div></div>
       </div>
       <div className={`${styles.ownerStage} pkv-hero-media`} aria-label="PKV Gold owner portrait">
-        <Image className={`${styles.ownerImage} pkv-hero-owner`} src={OWNER_HERO_ASSET} alt="PKV Gold owner" fill sizes="(max-width: 900px) 100vw, 55vw" unoptimized priority />
+        <Image className={`${styles.ownerImage} pkv-hero-owner`} src={OWNER_HERO_ASSET} alt="PKV Gold owner" fill sizes="(max-width: 900px) 100vw, 55vw" priority />
         <div className={styles.sideStatement}><strong>PEOPLE TRUST<br />PKV GOLD</strong><i /><span>VALUE<br />HONESTY<br />SERVICE</span></div>
       </div>
       </div>

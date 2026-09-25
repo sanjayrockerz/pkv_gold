@@ -3,7 +3,7 @@ import './globals.css';
 import { contact } from '@/lib/constants';
 
 const BASE_URL = 'https://www.pkvgold.com';
-const OG_IMAGE = `${BASE_URL}/images/PKV%20LOGO.png`;
+const OG_IMAGE = `${BASE_URL}/opengraph-image`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
