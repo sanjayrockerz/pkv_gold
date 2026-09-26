@@ -87,7 +87,7 @@ const proofImages = [
 function FinalCtaVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.65);
   const isInViewRef = useRef(false);
 
@@ -164,9 +164,11 @@ function FinalCtaVideo() {
     <div className="final-cta-video">
       <video
         ref={videoRef}
+        autoPlay
         loop
         playsInline
         preload="auto"
+        muted={false}
         aria-label="PKV Gold video"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
