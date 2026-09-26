@@ -2,7 +2,7 @@ export const contactConfig = {
   businessName: 'PKV Gold',
   phone: '+919444528847',
   displayPhone: '+91 94445 28847',
-  email: 'pkvgold@gmail.com',
+  email: 'pkvgold2025@gmail.com',
   address: 'No.9/7, Balagi Nagar Main Rd, Velavan Nagar, Kolathur, Chennai, Tamil Nadu 600099, India',
   locationLabel: 'Kolathur, Chennai',
   latitude: 13.1243414,

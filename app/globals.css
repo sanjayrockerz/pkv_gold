@@ -208,6 +208,8 @@ html,body{background:var(--ivory)}
 .final-cta-visual-frame img{object-fit:contain;object-position:center bottom;mix-blend-mode:multiply;filter:saturate(1.04) contrast(1.02)}
 .final-cta-video{position:relative;width:100%;height:100%}
 .final-cta-video>video{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:transparent}
+.final-cta-sound-prompt{position:absolute;z-index:2;right:1rem;top:1rem;display:inline-flex;align-items:center;gap:.45rem;min-height:2.35rem;padding:.55rem .8rem;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(14,48,37,.86);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.05em;box-shadow:0 .45rem 1.2rem rgba(14,48,37,.2)}
+.final-cta-sound-prompt:hover,.final-cta-sound-prompt:focus-visible{background:var(--green);outline:2px solid rgba(255,255,255,.8);outline-offset:2px}
 .final-cta-video-controls{position:absolute;right:.8rem;bottom:.8rem;left:.8rem;display:flex;align-items:center;gap:.45rem;width:max-content;max-width:calc(100% - 1.6rem);padding:.4rem .5rem;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(14,48,37,.82);box-shadow:0 .4rem 1.2rem rgba(14,48,37,.2);opacity:0;pointer-events:none;transform:translateY(.35rem);transition:opacity .2s ease,transform .2s ease}
 .final-cta-visual-frame:hover .final-cta-video-controls,.final-cta-visual-frame:focus-within .final-cta-video-controls{opacity:1;pointer-events:auto;transform:translateY(0)}
 .final-cta-video-controls button{display:grid;place-items:center;width:2rem;height:2rem;padding:0;border:0;border-radius:50%;background:transparent;color:#fff;font-size:.85rem;line-height:1}
@@ -503,7 +505,28 @@ html,body{background:var(--ivory)}
   }
 
   .pkv-hero .sideStatement {
-    display: none;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    width: clamp(7.25rem, 36vw, 10rem);
+    min-height: 0;
+    padding: .85rem .65rem;
+    gap: .8rem;
+    color: var(--green-deep);
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .pkv-hero .sideStatement strong {
+    font-size: clamp(.82rem, 4vw, 1.1rem);
+    line-height: 1.45;
+  }
+
+  .pkv-hero .sideStatement span {
+    font-size: clamp(.64rem, 2.8vw, .8rem);
+    line-height: 1.8;
   }
 
   .final-cta-visual-frame {

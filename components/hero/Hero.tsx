@@ -52,7 +52,7 @@ export function Hero() {
       </div>
       <div className={`${styles.ownerStage} pkv-hero-media`} aria-label="PKV Gold owner portrait">
         <Image className={`${styles.ownerImage} pkv-hero-owner`} src={OWNER_HERO_ASSET} alt="PKV Gold owner" fill sizes="(max-width: 900px) 100vw, 55vw" unoptimized priority />
-        <div className={styles.sideStatement}><strong>PEOPLE TRUST<br />PKV GOLD</strong><i /><span>VALUE<br />HONESTY<br />SERVICE</span></div>
+        <div className={`${styles.sideStatement} sideStatement`}><strong>PEOPLE TRUST<br />PKV GOLD</strong><i /><span>VALUE<br />HONESTY<br />SERVICE</span></div>
       </div>
       </div>
       <div className={`${styles.heroAtmosphere} pkv-hero-atmosphere`} aria-hidden="true" />

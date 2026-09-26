@@ -60,7 +60,7 @@
 .ownerStage{position:relative;z-index:1;perspective:1200px;transform:none!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible}
 .ownerBackdrop{display:none}
 .ownerImage{z-index:1;inset:auto 8% -1px auto!important;width:82%!important;height:96%!important;object-fit:contain!important;object-position:center bottom!important;will-change:transform,opacity;transform:translate3d(0,0,0);transform-origin:50% 100%;transform-style:preserve-3d}
-.sideStatement{will-change:opacity}
+.sideStatement{will-change:opacity,transform;opacity:0;transform:translateY(20px)}
 .heroAtmosphere,.heroTransitionLayer{position:absolute;z-index:0;inset:0;pointer-events:none}
 .heroAtmosphere{background:radial-gradient(circle at 78% 40%,rgba(14,48,37,.25),transparent 26%),radial-gradient(circle at 62% 52%,rgba(225,181,80,.18),transparent 28%);opacity:.9;will-change:opacity}
 .heroTransitionLayer{background:linear-gradient(180deg,transparent 55%,rgba(248,245,237,.42) 78%,var(--ivory) 100%);opacity:.9;will-change:opacity}
