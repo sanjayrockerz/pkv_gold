@@ -89,8 +89,6 @@ function FinalCtaVideo() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [volume, setVolume] = useState(0.65);
-  const [showSoundPrompt, setShowSoundPrompt] = useState(false);
-  const soundEnabledRef = useRef(false);
   const isInViewRef = useRef(false);
 
   useEffect(() => {
@@ -104,13 +102,11 @@ function FinalCtaVideo() {
       try {
         await video.play();
         setIsMuted(video.muted);
-        setShowSoundPrompt(!soundEnabledRef.current && video.muted);
       } catch {
         video.muted = true;
         try {
           await video.play();
           setIsMuted(true);
-          setShowSoundPrompt(true);
         } catch {
           setIsPlaying(false);
         }
@@ -132,22 +128,6 @@ function FinalCtaVideo() {
     observer.observe(frame);
     return () => observer.disconnect();
   }, [volume]);
-
-  const enableSound = async () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.volume = volume;
-    video.muted = false;
-    try {
-      await video.play();
-      soundEnabledRef.current = true;
-      setIsMuted(false);
-      setShowSoundPrompt(false);
-    } catch {
-      video.muted = true;
-      setIsMuted(true);
-    }
-  };
 
   const togglePlay = () => {
     const video = videoRef.current;
@@ -193,11 +173,6 @@ function FinalCtaVideo() {
       >
         <source src="/PKV%20GOLD%20.mp4" type="video/mp4" />
       </video>
-      {showSoundPrompt && (
-        <button className="final-cta-sound-prompt" type="button" onClick={() => void enableSound()}>
-          <span aria-hidden="true">🔊</span> Tap for sound
-        </button>
-      )}
       <div className="final-cta-video-controls" aria-label="Video controls">
         <button type="button" onClick={togglePlay} aria-label={isPlaying ? "Pause video" : "Play video"}>
           {isPlaying ? "Ⅱ" : "▶"}
